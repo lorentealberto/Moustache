@@ -1,6 +1,5 @@
 extends StaticBody2D
 
-
 const SPEED = 200
 
 var side = -1
@@ -15,7 +14,6 @@ func _process(delta):
 			global_position.x += SPEED * delta
 		1:
 			global_position.x -= SPEED * delta
-
 
 func set_side(_side):
 	side = _side
