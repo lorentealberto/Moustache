@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://wfg1b2r10h4e"]
+
+[ext_resource type="PackedScene" uid="uid://u6r4cixbhl3b" path="res://objects/spawner.tscn" id="3_l5pcr"]
+
+[node name="Platforms" type="Node"]
+
+[node name="Spawner" parent="." instance=ExtResource("3_l5pcr")]
+
+[node name="Spawner2" parent="." instance=ExtResource("3_l5pcr")]
+position = Vector2(1355, 610)
