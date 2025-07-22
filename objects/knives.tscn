@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://56c2opdhsqgh"]
+
+[ext_resource type="Script" path="res://scripts/knives.gd" id="1_yreif"]
+[ext_resource type="PackedScene" uid="uid://b62ib3ipvp6j2" path="res://objects/knife_spawner.tscn" id="2_dk6dh"]
+
+[node name="Knives" type="Node"]
+script = ExtResource("1_yreif")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="KnifeSpawner" parent="." instance=ExtResource("2_dk6dh")]
+position = Vector2(0, 319)
+
+[node name="WarningIcon" parent="KnifeSpawner" index="1"]
+position = Vector2(40, 0)
+
+[node name="KnifeSpawner2" parent="." instance=ExtResource("2_dk6dh")]
+position = Vector2(0, 514)
+
+[node name="WarningIcon" parent="KnifeSpawner2" index="1"]
+position = Vector2(40, 0)
+
+[node name="KnifeSpawner3" parent="." instance=ExtResource("2_dk6dh")]
+position = Vector2(1279, 319)
+
+[node name="WarningIcon" parent="KnifeSpawner3" index="1"]
+position = Vector2(-40, 0)
+
+[node name="KnifeSpawner4" parent="." instance=ExtResource("2_dk6dh")]
+position = Vector2(1279, 514)
+
+[node name="WarningIcon" parent="KnifeSpawner4" index="1"]
+position = Vector2(-40, 0)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="KnifeSpawner"]
+[editable path="KnifeSpawner2"]
+[editable path="KnifeSpawner3"]
+[editable path="KnifeSpawner4"]

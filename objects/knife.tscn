@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://fdg065bdnq25"]
+
+[ext_resource type="Script" path="res://scripts/knife.gd" id="1_b73cx"]
+[ext_resource type="Texture2D" uid="uid://bvwvd6jp6lfvb" path="res://assets/graphics/knife.png" id="1_l2yjj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjf7c"]
+atlas = ExtResource("1_l2yjj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hu52j"]
+atlas = ExtResource("1_l2yjj")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q2y2k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjf7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hu52j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcdkp"]
+size = Vector2(66, 62)
+
+[node name="Knife" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_b73cx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_q2y2k")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mcdkp")

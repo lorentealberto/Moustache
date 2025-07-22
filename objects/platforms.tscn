@@ -5,6 +5,7 @@
 [node name="Platforms" type="Node"]
 
 [node name="Spawner" parent="." instance=ExtResource("3_l5pcr")]
+position = Vector2(-80, 400)
 
 [node name="Spawner2" parent="." instance=ExtResource("3_l5pcr")]
-position = Vector2(1355, 610)
+position = Vector2(1355, 594)

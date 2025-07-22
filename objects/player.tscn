@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://4mh4okynk4p3"]
+[gd_scene load_steps=8 format=3 uid="uid://4mh4okynk4p3"]
 
 [ext_resource type="Texture2D" uid="uid://cw7locdehmhj5" path="res://assets/graphics/player.png" id="1_gauyg"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_n4l2w"]
@@ -28,6 +28,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1vmkx"]
 size = Vector2(72, 6)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykjyp"]
+size = Vector2(66, 70)
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 0
@@ -42,3 +45,13 @@ offset = Vector2(2.08165e-12, -7)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_1vmkx")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-1, -41)
+shape = SubResource("RectangleShape2D_ykjyp")
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

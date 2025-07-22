@@ -26,3 +26,7 @@ func _process(delta):
 		velocity.y = -JFORCE
 	
 	move_and_slide()
+
+
+func _on_hit_box_area_entered(area):
+	queue_free()
