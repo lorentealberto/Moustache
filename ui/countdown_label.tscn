@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://bs3tgx2eghghq"]
+
+[ext_resource type="Theme" uid="uid://dk4girx1y2qw7" path="res://assets/resources/main.tres" id="1_pnigg"]
+[ext_resource type="Script" path="res://scripts/countdown.gd" id="2_n8q7g"]
+
+[sub_resource type="Animation" id="Animation_7yki5"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.0872665, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_qi88s"]
+resource_name = "shake"
+length = 0.75
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [0.0, 0.261799, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fuant"]
+_data = {
+"RESET": SubResource("Animation_7yki5"),
+"shake": SubResource("Animation_qi88s")
+}
+
+[node name="Countdown" type="Label"]
+anchors_preset = -1
+anchor_right = 0.0703125
+anchor_bottom = 0.25
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(45, 90)
+theme = ExtResource("1_pnigg")
+theme_type_variation = &"HeaderLarge"
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_n8q7g")
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_fuant")
+}
+autoplay = "shake"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

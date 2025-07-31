@@ -2,16 +2,16 @@ extends Node
 
 @export var platform_scene: PackedScene
 
-@onready var positions = [$Marker2D, $Marker2D3]
+@onready var positions: Array = [$Marker2D, $Marker2D3]
 
-func _ready():
+func _ready() -> void:
 	randomize()
+	Signals.game_started.connect(start_game)
 
-func spawn_platform():
-	var rnd = randi() % 2
-	print(rnd)
+func spawn_platform() -> void:
+	var rnd: int = randi() % 2
 	
-	var instance = platform_scene.instantiate()
+	var instance: StaticBody2D = platform_scene.instantiate()
 	
 	instance.global_position = positions[rnd].global_position
 	
@@ -23,5 +23,10 @@ func spawn_platform():
 	add_child(instance)
 
 
-func _on_timer_timeout():
+func start_game() -> void:
+	print("Warro")
+	
+
+
+func _on_timer_timeout() -> void:
 	spawn_platform()

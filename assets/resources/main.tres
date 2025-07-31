@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dk4girx1y2qw7"]
+
+[ext_resource type="FontFile" uid="uid://byhfxk5p3mvvy" path="res://assets/fonts/kenney_mini_square.ttf" id="1_60ibt"]
+
+[resource]
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/font_sizes/font_size = 144
+Label/fonts/font = ExtResource("1_60ibt")

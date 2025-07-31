@@ -1,10 +1,13 @@
 extends Area2D
 
-const HSPEED = 200
 
-var direction = -1
+@onready var spr: AnimatedSprite2D = $AnimatedSprite2D
 
-func _process(delta):
+const HSPEED: float = 150
+
+var direction: int = -1
+
+func _process(delta: float) -> void:
 	if direction == -1:
 		return
 	
@@ -13,3 +16,7 @@ func _process(delta):
 			global_position.x += HSPEED * delta
 		1:
 			global_position.x -= HSPEED * delta
+
+func set_direction(_dir: int) -> void:
+	direction = _dir
+	spr.flip_h = _dir != 0

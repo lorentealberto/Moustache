@@ -1,12 +1,19 @@
 extends CharacterBody2D
 
-@onready var spr = $AnimatedSprite
+@onready var spr: AnimatedSprite2D = $AnimatedSprite
 
-const GRAVITY = 98
-const JFORCE = 1500
-const HSPEED = 750
+const GRAVITY: float = 98
+const JFORCE: float = 1500
+const HSPEED: float = 750
 
-func _process(delta):
+
+#To-Do
+# Comenzar animación una vez que el temporizador inicial haya terminado.
+# Hacer zoom antes de la animación de aparición.
+# La animación de aparición es una espiral.
+# El juego no comenzará hasta que no haya acabado la animación de aparición.
+
+func _process(delta: float) -> void:
 	velocity.y += GRAVITY
 	
 	#Horizontal Movement
@@ -28,5 +35,5 @@ func _process(delta):
 	move_and_slide()
 
 
-func _on_hit_box_area_entered(area):
+func _on_hit_box_area_entered(area: Area2D) -> void:
 	queue_free()

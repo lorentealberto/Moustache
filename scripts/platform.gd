@@ -1,11 +1,11 @@
 extends StaticBody2D
 
-const SPEED = 200
+const SPEED: float = 125
 
-var side = -1
+var side: int = -1
 
 
-func _process(delta):
+func _process(delta: float) -> void:
 	if side == -1:
 		return
 	
@@ -15,9 +15,9 @@ func _process(delta):
 		1:
 			global_position.x -= SPEED * delta
 
-func set_side(_side):
+func set_side(_side: int) -> void:
 	side = _side
 
 
-func _on_visible_on_screen_notifier_2d_screen_exited():
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
