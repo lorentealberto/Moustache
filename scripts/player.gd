@@ -13,6 +13,9 @@ var was_on_floor: bool = false
 var is_active: bool = false
 var direction: int = 0
 
+func _ready() -> void:
+	Signals.zoom_ended.connect(_enable_player)
+
 
 func _process(delta: float) -> void:
 	if is_active:
@@ -56,7 +59,5 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 	pass
 	#queue_free()
 
-
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "appear":
-		is_active = true
+func _enable_player() -> void:
+	is_active = true

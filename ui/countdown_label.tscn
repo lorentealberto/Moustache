@@ -53,6 +53,7 @@ _data = {
 }
 
 [node name="Countdown" type="Label"]
+modulate = Color(0, 0, 0, 0.294118)
 anchors_preset = -1
 anchor_right = 0.0703125
 anchor_bottom = 0.25
