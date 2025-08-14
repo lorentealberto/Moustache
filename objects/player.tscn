@@ -214,3 +214,4 @@ libraries = {
 autoplay = "appear"
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="finished" from="AppearParticles" to="." method="_on_appear_particles_finished"]

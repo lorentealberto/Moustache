@@ -5,8 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://4mh4okynk4p3" path="res://objects/player.tscn" id="2_01s1c"]
 [ext_resource type="Texture2D" uid="uid://dsg4rx48euiwf" path="res://assets/graphics/barber.png" id="2_p3roe"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_wwsdq"]
-[ext_resource type="PackedScene" uid="uid://bw2g8scqgqhmn" path="res://objects/bullet_spawner.tscn" id="6_a5l8t"]
 [ext_resource type="PackedScene" uid="uid://dbf06y2solaox" path="res://ui/countdown.tscn" id="8_vj7oq"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8rrwf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ee3qo"]
 texture = ExtResource("1_ppeeo")
@@ -93,10 +94,12 @@ animations = [{
 "speed": 2.0
 }]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("player_spawn")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("player_spawn", "countdown_position")]
 script = ExtResource("1_8bcsx")
 player_inst = ExtResource("2_01s1c")
+countdown_inst = ExtResource("8_vj7oq")
 player_spawn = NodePath("PlayerSpawn")
+countdown_position = NodePath("CountdownPosition")
 
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2(640, 659)
@@ -105,6 +108,7 @@ limit_top = 0
 limit_right = 1280
 limit_bottom = 720
 script = ExtResource("2_wwsdq")
+noise = SubResource("FastNoiseLite_8rrwf")
 
 [node name="PlayerSpawn" type="Marker2D" parent="."]
 position = Vector2(640, 667)
@@ -127,13 +131,5 @@ sprite_frames = SubResource("SpriteFrames_uojea")
 autoplay = "default"
 offset = Vector2(2.08165e-12, -15)
 
-[node name="BulletSpawner" parent="Barber" instance=ExtResource("6_a5l8t")]
-rotation = 1.5708
-duration = 20.0
-spread_dispersion = 160
-
-[node name="Countdown" parent="." instance=ExtResource("8_vj7oq")]
-offset_left = 653.0
-offset_top = 232.0
-offset_right = 653.0
-offset_bottom = 232.0
+[node name="CountdownPosition" type="Marker2D" parent="."]
+position = Vector2(640, 340)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bs3tgx2eghghq"]
+[gd_scene load_steps=7 format=3 uid="uid://bs3tgx2eghghq"]
 
 [ext_resource type="Theme" uid="uid://dk4girx1y2qw7" path="res://assets/resources/main.tres" id="1_pnigg"]
 [ext_resource type="Script" path="res://scripts/countdown.gd" id="2_n8q7g"]
+[ext_resource type="PackedScene" uid="uid://b53kbji5hpbrc" path="res://objects/particles/explosion_particles.tscn" id="3_e4dsm"]
 
 [sub_resource type="Animation" id="Animation_7yki5"]
 length = 0.001
@@ -67,16 +68,19 @@ text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_n8q7g")
+particles = ExtResource("3_e4dsm")
 metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="."]
-autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_fuant")
 }
 autoplay = "shake"
+
+[node name="ParticlesPosition" type="Marker2D" parent="."]
+position = Vector2(33.4814, 96.0268)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

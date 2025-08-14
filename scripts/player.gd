@@ -20,7 +20,7 @@ var oscillator_velocity: float = 0
 
 
 func _ready() -> void:
-	Signals.zoom_ended.connect(_enable_player)
+	Signals.zoom_finished.connect(_enable_player)
 
 
 func _process(delta: float) -> void:
@@ -58,6 +58,7 @@ func _process(delta: float) -> void:
 		if not was_on_floor and is_on_floor():
 			anim.stop(true)
 			anim.play("grounded")
+			System.main_camera.apply_shake(0.25)
 		
 		was_on_floor = is_on_floor()
 
@@ -68,3 +69,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 
 func _enable_player() -> void:
 	is_active = true
+
+
+func _on_appear_particles_finished() -> void:
+	Signals.player_spawned.emit()
