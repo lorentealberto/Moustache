@@ -1,15 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://bw2g8scqgqhmn"]
+[gd_scene load_steps=7 format=3 uid="uid://bw2g8scqgqhmn"]
 
 [ext_resource type="Script" path="res://scripts/bullet_spawner.gd" id="1_veg8c"]
 [ext_resource type="PackedScene" uid="uid://batjl3t55xgti" path="res://objects/bullet.tscn" id="2_b75ub"]
+[ext_resource type="Script" path="res://scripts/patterns/base_pattern.gd" id="2_l3bmu"]
+[ext_resource type="Resource" uid="uid://c2llf1drgcqxc" path="res://scripts/patterns/burst.tres" id="3_t5g8b"]
+[ext_resource type="Resource" uid="uid://blh5k7ojisuqx" path="res://scripts/patterns/spiral.tres" id="4_jeymi"]
+[ext_resource type="Resource" uid="uid://ihwve3q10mmm" path="res://scripts/patterns/pulse.tres" id="5_58lid"]
 
 [node name="BulletSpawner" type="Marker2D"]
-position = Vector2(644, 352)
 script = ExtResource("1_veg8c")
+mode = 1
+duration = 180.0
+patterns_pool = Array[ExtResource("2_l3bmu")]([ExtResource("3_t5g8b"), ExtResource("4_jeymi"), ExtResource("5_58lid")])
 bullet_scene = ExtResource("2_b75ub")
-spawn_point_count = 24
-shoot_delay = 0.5
+spread_dispersion = 180
 
-[node name="Timer" type="Timer" parent="."]
+[node name="ShootTimer" type="Timer" parent="."]
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="Duration" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]

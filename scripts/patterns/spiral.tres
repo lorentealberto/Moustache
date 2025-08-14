@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BulletsPattern" load_steps=2 format=3 uid="uid://blh5k7ojisuqx"]
+
+[ext_resource type="Script" path="res://scripts/patterns/base_pattern.gd" id="1_t2eur"]
+
+[resource]
+script = ExtResource("1_t2eur")
+spawn_point_count = 8
+spiral_speed = 0
+shoot_delay = 0.1
+one_shoot = false

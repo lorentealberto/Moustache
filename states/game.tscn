@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=4 uid="uid://hrr0qhhysjjk"]
+[gd_scene load_steps=14 format=4 uid="uid://hrr0qhhysjjk"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_8bcsx"]
 [ext_resource type="Texture2D" uid="uid://xwfcd3mq0lmv" path="res://assets/graphics/table.png" id="1_ppeeo"]
 [ext_resource type="PackedScene" uid="uid://4mh4okynk4p3" path="res://objects/player.tscn" id="2_01s1c"]
 [ext_resource type="Texture2D" uid="uid://dsg4rx48euiwf" path="res://assets/graphics/barber.png" id="2_p3roe"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_wwsdq"]
+[ext_resource type="PackedScene" uid="uid://bw2g8scqgqhmn" path="res://objects/bullet_spawner.tscn" id="6_a5l8t"]
 [ext_resource type="PackedScene" uid="uid://dbf06y2solaox" path="res://ui/countdown.tscn" id="8_vj7oq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ee3qo"]
@@ -125,6 +126,11 @@ scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_uojea")
 autoplay = "default"
 offset = Vector2(2.08165e-12, -15)
+
+[node name="BulletSpawner" parent="Barber" instance=ExtResource("6_a5l8t")]
+rotation = 1.5708
+duration = 20.0
+spread_dispersion = 160
 
 [node name="Countdown" parent="." instance=ExtResource("8_vj7oq")]
 offset_left = 653.0

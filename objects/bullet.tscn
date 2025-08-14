@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://batjl3t55xgti"]
+[gd_scene load_steps=7 format=3 uid="uid://batjl3t55xgti"]
 
 [ext_resource type="Texture2D" uid="uid://cow2t8emk7eaj" path="res://assets/graphics/white_circle.png" id="1_2jy8f"]
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="2_jiy1h"]
@@ -6,8 +6,46 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_mq1m3"]
 radius = 48.0
 
+[sub_resource type="Animation" id="Animation_l15x7"]
+resource_name = "fade"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5hwox"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g5bqw"]
+_data = {
+"RESET": SubResource("Animation_5hwox"),
+"fade": SubResource("Animation_l15x7")
+}
+
 [node name="Bullet" type="Sprite2D"]
-scale = Vector2(0.25, 0.25)
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_2jy8f")
 script = ExtResource("2_jiy1h")
 horizontal_speed = 400.0
@@ -18,5 +56,11 @@ horizontal_speed = 400.0
 shape = SubResource("CircleShape2D_mq1m3")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g5bqw")
+}
+autoplay = "fade"
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
