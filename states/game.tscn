@@ -1,12 +1,10 @@
-[gd_scene load_steps=15 format=4 uid="uid://hrr0qhhysjjk"]
+[gd_scene load_steps=13 format=4 uid="uid://hrr0qhhysjjk"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_8bcsx"]
 [ext_resource type="Texture2D" uid="uid://xwfcd3mq0lmv" path="res://assets/graphics/table.png" id="1_ppeeo"]
 [ext_resource type="PackedScene" uid="uid://4mh4okynk4p3" path="res://objects/player.tscn" id="2_01s1c"]
 [ext_resource type="Texture2D" uid="uid://dsg4rx48euiwf" path="res://assets/graphics/barber.png" id="2_p3roe"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_wwsdq"]
-[ext_resource type="PackedScene" uid="uid://d2iolj3qolsbv" path="res://objects/platforms.tscn" id="3_4s8cx"]
-[ext_resource type="PackedScene" uid="uid://56c2opdhsqgh" path="res://objects/knives.tscn" id="3_k8feo"]
 [ext_resource type="PackedScene" uid="uid://dbf06y2solaox" path="res://ui/countdown.tscn" id="8_vj7oq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ee3qo"]
@@ -118,7 +116,7 @@ tile_set = SubResource("TileSet_6lcyy")
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/Bottom"]
-position = Vector2(640, 733.5)
+position = Vector2(640, 732.5)
 shape = SubResource("RectangleShape2D_4omx3")
 
 [node name="Barber" type="AnimatedSprite2D" parent="."]
@@ -127,10 +125,6 @@ scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_uojea")
 autoplay = "default"
 offset = Vector2(2.08165e-12, -15)
-
-[node name="Knifes" parent="." instance=ExtResource("3_k8feo")]
-
-[node name="Platforms" parent="." instance=ExtResource("3_4s8cx")]
 
 [node name="Countdown" parent="." instance=ExtResource("8_vj7oq")]
 offset_left = 653.0

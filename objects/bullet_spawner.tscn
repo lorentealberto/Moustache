@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bw2g8scqgqhmn"]
+
+[ext_resource type="Script" path="res://scripts/bullet_spawner.gd" id="1_veg8c"]
+[ext_resource type="PackedScene" uid="uid://batjl3t55xgti" path="res://objects/bullet.tscn" id="2_b75ub"]
+
+[node name="BulletSpawner" type="Marker2D"]
+position = Vector2(644, 352)
+script = ExtResource("1_veg8c")
+bullet_scene = ExtResource("2_b75ub")
+spawn_point_count = 24
+shoot_delay = 0.5
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
