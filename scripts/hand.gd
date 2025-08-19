@@ -1,0 +1,48 @@
+extends Sprite2D
+
+@export var target_pos: Marker2D
+
+
+const SPEED: float = 1
+const FREQUENCY: float = 2
+const AMPLITUDE: float = 15
+
+var time: float = 0
+var enabled: bool = false
+
+var mode: int = 0
+var delay: float = randf_range(3, 10)
+var offset_pos: float = 0.0
+
+
+func _ready() -> void:
+	Signals.zoom_finished.connect(approach)
+	mode = randi() % 2
+
+
+func _process(delta: float) -> void:
+	if enabled:
+		if delay <= 0:
+			if abs(offset_pos) > 0.01:
+				offset_pos = lerpf(offset_pos, 0.0, 0.1)
+			else:
+				delay = randf_range(3, 10)
+				mode = randi() % 2
+				time = 0
+		else:
+			time += delta * SPEED
+			delay -= delta
+			offset_pos = AMPLITUDE * sin(time * FREQUENCY)
+		match mode:
+			0:
+				global_position.y = target_pos.global_position.y + offset_pos
+			1:
+				global_position.x = target_pos.global_position.x + offset_pos
+				
+
+
+func approach() -> void:
+	var tween: Tween = get_tree().create_tween()
+	
+	tween.tween_property(self, "global_position", target_pos.global_position, 2).set_delay(1)
+	tween.tween_callback(func() -> void: enabled = true)

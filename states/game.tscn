@@ -105,6 +105,7 @@ position = Vector2(640, 733.5)
 shape = SubResource("RectangleShape2D_4omx3")
 
 [node name="Barber" parent="." instance=ExtResource("7_gih1v")]
+position = Vector2(642, 256)
 
 [node name="CountdownPosition" type="Marker2D" parent="."]
 position = Vector2(640, 340)

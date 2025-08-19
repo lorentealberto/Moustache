@@ -1,39 +1,88 @@
-[gd_scene load_steps=9 format=3 uid="uid://br70syorjb6sm"]
+[gd_scene load_steps=12 format=3 uid="uid://br70syorjb6sm"]
 
 [ext_resource type="Texture2D" uid="uid://dsg4rx48euiwf" path="res://assets/graphics/barber.png" id="1_fr7ka"]
 [ext_resource type="Script" path="res://objects/boss_attacks/scripts/attacks.gd" id="3_8uo6p"]
 [ext_resource type="Script" path="res://objects/boss_attacks/scripts/throw_grenades.gd" id="3_q7urt"]
 [ext_resource type="PackedScene" uid="uid://4xkha4eh53ip" path="res://objects/grenade.tscn" id="4_01kgy"]
 [ext_resource type="Script" path="res://objects/boss_attacks/scripts/burst.gd" id="5_ksoqw"]
+[ext_resource type="PackedScene" uid="uid://c2vpcqxlbwpob" path="res://objects/eye.tscn" id="6_by5vf"]
+[ext_resource type="PackedScene" uid="uid://bob3s2sd0s8ab" path="res://objects/right_hand.tscn" id="7_axcds"]
+[ext_resource type="PackedScene" uid="uid://b87fe4eo54si6" path="res://objects/left_hand.tscn" id="8_nd32p"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mjs3i"]
-atlas = ExtResource("1_fr7ka")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="Animation" id="Animation_gaaxg"]
+resource_name = "breathe"
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HeadEye:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(0.25, -22.5), Vector2(0.25, -21.5), Vector2(0.25, -22.5)]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0j5dv"]
-atlas = ExtResource("1_fr7ka")
-region = Rect2(32, 0, 32, 32)
+[sub_resource type="Animation" id="Animation_8crhs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HeadEye:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.25, -22.5)]
+}
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_uojea"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mjs3i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0j5dv")
-}],
-"loop": true,
-"name": &"default",
-"speed": 2.0
-}]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ad080"]
+_data = {
+"RESET": SubResource("Animation_8crhs"),
+"breathe": SubResource("Animation_gaaxg")
+}
 
-[node name="Barber" type="AnimatedSprite2D"]
-position = Vector2(640, 257)
+[node name="Barber" type="Sprite2D"]
 scale = Vector2(8, 8)
-sprite_frames = SubResource("SpriteFrames_uojea")
-autoplay = "default"
+texture = ExtResource("1_fr7ka")
 offset = Vector2(2.08165e-12, -15)
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ad080")
+}
+autoplay = "breathe"
+speed_scale = 0.5
 
 [node name="Attacks" type="Node" parent="." node_paths=PackedStringArray("initial_attack")]
 script = ExtResource("3_8uo6p")
@@ -45,3 +94,21 @@ grenade = ExtResource("4_01kgy")
 
 [node name="Burst" type="Node" parent="Attacks"]
 script = ExtResource("5_ksoqw")
+
+[node name="HeadEye" parent="." instance=ExtResource("6_by5vf")]
+position = Vector2(0.25, -22.5)
+scale = Vector2(0.15, 0.15)
+
+[node name="RightHand" parent="." node_paths=PackedStringArray("target_pos") instance=ExtResource("7_axcds")]
+position = Vector2(-100, -64)
+target_pos = NodePath("../RightHandPos")
+
+[node name="LeftHand" parent="." node_paths=PackedStringArray("target_pos") instance=ExtResource("8_nd32p")]
+position = Vector2(100, -64)
+target_pos = NodePath("../LeftHandPos")
+
+[node name="RightHandPos" type="Marker2D" parent="."]
+position = Vector2(-16, -4)
+
+[node name="LeftHandPos" type="Marker2D" parent="."]
+position = Vector2(16, -4)
