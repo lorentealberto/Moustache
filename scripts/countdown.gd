@@ -27,5 +27,5 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 				inst.global_position = part_pos.global_position
 				get_tree().root.add_child(inst)
 				Signals.game_started.emit()
-				System.main_camera.apply_shake(1)
-				queue_free()
+				System.main_camera.apply_shake(0.5)
+				get_parent().queue_free()

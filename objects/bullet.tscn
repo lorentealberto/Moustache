@@ -45,7 +45,7 @@ _data = {
 
 [node name="Bullet" type="Sprite2D"]
 modulate = Color(1, 1, 1, 0)
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_2jy8f")
 script = ExtResource("2_jiy1h")
 horizontal_speed = 400.0

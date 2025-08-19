@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=3 uid="uid://cj2c2kay61x0f"]
+
+[ext_resource type="Texture2D" uid="uid://cow2t8emk7eaj" path="res://assets/graphics/white_circle.png" id="1_im5q8"]
+[ext_resource type="Script" path="res://objects/particles/particles.gd" id="2_ecwn4"]
+
+[sub_resource type="Gradient" id="Gradient_8y8g1"]
+offsets = PackedFloat32Array(0, 0.467213, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_r1xld"]
+gradient = SubResource("Gradient_8y8g1")
+
+[sub_resource type="Curve" id="Curve_qlbho"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.9022, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kwhly"]
+curve = SubResource("Curve_qlbho")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0w2yv"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, -1, 0)
+spread = 70.0
+initial_velocity_min = 208.0
+initial_velocity_max = 208.0
+orbit_velocity_min = -0.338
+orbit_velocity_max = 0.366
+gravity = Vector3(0, 98, 0)
+scale_min = 0.1
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_kwhly")
+color_ramp = SubResource("GradientTexture1D_r1xld")
+
+[sub_resource type="Gradient" id="Gradient_tpimt"]
+offsets = PackedFloat32Array(0.147541, 0.262295, 0.454918, 0.586066, 0.77459, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.22, 0.22, 1, 1, 0.566667, 0, 1, 1, 0.566667, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g5irc"]
+gradient = SubResource("Gradient_tpimt")
+
+[sub_resource type="Curve" id="Curve_xmnfe"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.168874, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_w4hus"]
+curve = SubResource("Curve_xmnfe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h751e"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 30.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_w4hus")
+color_ramp = SubResource("GradientTexture1D_g5irc")
+
+[node name="ExplosionParticles" type="GPUParticles2D"]
+position = Vector2(1, 0)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_0w2yv")
+texture = ExtResource("1_im5q8")
+lifetime = 1.7
+one_shot = true
+explosiveness = 0.8
+randomness = 0.29
+script = ExtResource("2_ecwn4")
+
+[node name="Core" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_h751e")
+texture = ExtResource("1_im5q8")
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.8

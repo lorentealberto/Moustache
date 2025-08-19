@@ -24,7 +24,7 @@ func _ready() -> void:
 
 func config_pattern() -> void:
 	selected_pattern = patterns_pool[mode]
-	shoot_timer.one_shot = selected_pattern.one_shoot
+	duration_timer.one_shot = selected_pattern.one_shoot
 	shoot_timer.start(selected_pattern.shoot_delay)
 	steps = 360 / selected_pattern.spawn_point_count
 	if not selected_pattern.one_shoot:
@@ -33,6 +33,7 @@ func config_pattern() -> void:
 
 func _on_duration_timeout() -> void:
 	shoot_timer.stop()
+	get_parent().queue_free()
 
 
 func _on_shoot_timer_timeout() -> void:

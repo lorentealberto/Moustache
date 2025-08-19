@@ -20,6 +20,7 @@ var oscillator_velocity: float = 0
 
 
 func _ready() -> void:
+	System.player = self
 	Signals.zoom_finished.connect(_enable_player)
 
 

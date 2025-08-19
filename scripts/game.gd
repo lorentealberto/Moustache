@@ -5,13 +5,25 @@ extends Node2D
 @export var player_spawn: Marker2D
 @export var countdown_position: Marker2D
 
+@onready var limit: Marker2D = $Limit
+
 var game_started: bool = false
+
+
+@export var grenade_scene: PackedScene
+
 
 
 func _ready() -> void:
 	Signals.zoom_half.connect(spawn_player)
 	Signals.zoom_finished.connect(spawn_countdown)
+	
+	System.limit = limit.global_position
 
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("spawn_grenade"):
+		add_child(grenade_scene.instantiate())
 
 func spawn_player() -> void:
 	game_started = true

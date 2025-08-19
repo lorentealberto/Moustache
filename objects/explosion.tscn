@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://xrhxutg23u72"]
+
+[ext_resource type="PackedScene" uid="uid://bw2g8scqgqhmn" path="res://objects/bullet_spawner.tscn" id="1_dd4dr"]
+
+[node name="Explosion" type="Node2D"]
+
+[node name="BulletSpawner" parent="." instance=ExtResource("1_dd4dr")]
+mode = 2
+spread_dispersion = 360

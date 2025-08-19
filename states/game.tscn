@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=4 uid="uid://hrr0qhhysjjk"]
+[gd_scene load_steps=15 format=4 uid="uid://hrr0qhhysjjk"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_8bcsx"]
 [ext_resource type="Texture2D" uid="uid://xwfcd3mq0lmv" path="res://assets/graphics/table.png" id="1_ppeeo"]
 [ext_resource type="PackedScene" uid="uid://4mh4okynk4p3" path="res://objects/player.tscn" id="2_01s1c"]
 [ext_resource type="Texture2D" uid="uid://dsg4rx48euiwf" path="res://assets/graphics/barber.png" id="2_p3roe"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_wwsdq"]
+[ext_resource type="PackedScene" uid="uid://4xkha4eh53ip" path="res://objects/grenade.tscn" id="7_xhjai"]
 [ext_resource type="PackedScene" uid="uid://dbf06y2solaox" path="res://ui/countdown.tscn" id="8_vj7oq"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_8rrwf"]
@@ -100,6 +101,7 @@ player_inst = ExtResource("2_01s1c")
 countdown_inst = ExtResource("8_vj7oq")
 player_spawn = NodePath("PlayerSpawn")
 countdown_position = NodePath("CountdownPosition")
+grenade_scene = ExtResource("7_xhjai")
 
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2(640, 659)
@@ -121,7 +123,7 @@ tile_set = SubResource("TileSet_6lcyy")
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/Bottom"]
-position = Vector2(640, 732.5)
+position = Vector2(640, 733.5)
 shape = SubResource("RectangleShape2D_4omx3")
 
 [node name="Barber" type="AnimatedSprite2D" parent="."]
@@ -133,3 +135,7 @@ offset = Vector2(2.08165e-12, -15)
 
 [node name="CountdownPosition" type="Marker2D" parent="."]
 position = Vector2(640, 340)
+
+[node name="Limit" type="Marker2D" parent="."]
+position = Vector2(0, 388)
+metadata/_edit_lock_ = true

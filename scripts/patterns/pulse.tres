@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_4cnmo")
-spawn_point_count = 24
+spawn_point_count = 13
 spiral_speed = 0
 shoot_delay = 0.1
 one_shoot = true
