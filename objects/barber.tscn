@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://br70syorjb6sm"]
+[gd_scene load_steps=11 format=3 uid="uid://br70syorjb6sm"]
 
 [ext_resource type="Texture2D" uid="uid://dsg4rx48euiwf" path="res://assets/graphics/barber.png" id="1_fr7ka"]
 [ext_resource type="Script" path="res://objects/boss_attacks/scripts/attacks.gd" id="3_8uo6p"]
@@ -6,8 +6,34 @@
 [ext_resource type="PackedScene" uid="uid://4xkha4eh53ip" path="res://objects/grenade.tscn" id="4_01kgy"]
 [ext_resource type="Script" path="res://objects/boss_attacks/scripts/burst.gd" id="5_ksoqw"]
 [ext_resource type="PackedScene" uid="uid://c2vpcqxlbwpob" path="res://objects/eye.tscn" id="6_by5vf"]
-[ext_resource type="PackedScene" uid="uid://bob3s2sd0s8ab" path="res://objects/right_hand.tscn" id="7_axcds"]
-[ext_resource type="PackedScene" uid="uid://b87fe4eo54si6" path="res://objects/left_hand.tscn" id="8_nd32p"]
+[ext_resource type="PackedScene" uid="uid://b87fe4eo54si6" path="res://objects/hand.tscn" id="8_nd32p"]
+
+[sub_resource type="Animation" id="Animation_8crhs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HeadEye:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.25, -22.5)]
+}
 
 [sub_resource type="Animation" id="Animation_gaaxg"]
 resource_name = "breathe"
@@ -36,33 +62,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [Vector2(0.25, -22.5), Vector2(0.25, -21.5), Vector2(0.25, -22.5)]
-}
-
-[sub_resource type="Animation" id="Animation_8crhs"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HeadEye:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.25, -22.5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ad080"]
@@ -97,15 +96,15 @@ script = ExtResource("5_ksoqw")
 
 [node name="HeadEye" parent="." instance=ExtResource("6_by5vf")]
 position = Vector2(0.25, -22.5)
-scale = Vector2(0.15, 0.15)
-
-[node name="RightHand" parent="." node_paths=PackedStringArray("target_pos") instance=ExtResource("7_axcds")]
-position = Vector2(-100, -64)
-target_pos = NodePath("../RightHandPos")
+scale = Vector2(0.2, 0.2)
 
 [node name="LeftHand" parent="." node_paths=PackedStringArray("target_pos") instance=ExtResource("8_nd32p")]
 position = Vector2(100, -64)
 target_pos = NodePath("../LeftHandPos")
+
+[node name="RightHand" parent="." node_paths=PackedStringArray("target_pos") instance=ExtResource("8_nd32p")]
+position = Vector2(-100, -64)
+target_pos = NodePath("../RightHandPos")
 
 [node name="RightHandPos" type="Marker2D" parent="."]
 position = Vector2(-16, -4)

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://b87fe4eo54si6"]
+
+[ext_resource type="Texture2D" uid="uid://cjsjviggwhma" path="res://assets/graphics/hand.png" id="1_lkspt"]
+[ext_resource type="Script" path="res://scripts/hand.gd" id="2_ai4ii"]
+[ext_resource type="PackedScene" uid="uid://c2vpcqxlbwpob" path="res://objects/eye.tscn" id="3_lnqhc"]
+
+[node name="Hand" type="Sprite2D"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_lkspt")
+offset = Vector2(0, -16)
+flip_h = true
+script = ExtResource("2_ai4ii")
+
+[node name="Eye" parent="." instance=ExtResource("3_lnqhc")]
+position = Vector2(1.29052, -8.67935)
+scale = Vector2(0.6, 0.6)
