@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsjci7vyqcltf"]
+
+[ext_resource type="Script" path="res://objects/boss_attacks/scripts/throw_grenades.gd" id="1_1drp2"]
+[ext_resource type="PackedScene" uid="uid://4xkha4eh53ip" path="res://objects/grenade.tscn" id="2_serr0"]
+
+[node name="ThrowGrenades" type="Node"]
+script = ExtResource("1_1drp2")
+grenade = ExtResource("2_serr0")
+
+[node name="Delay" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true

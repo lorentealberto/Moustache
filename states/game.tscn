@@ -1,10 +1,10 @@
-[gd_scene load_steps=15 format=4 uid="uid://hrr0qhhysjjk"]
+[gd_scene load_steps=12 format=4 uid="uid://hrr0qhhysjjk"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_8bcsx"]
 [ext_resource type="Texture2D" uid="uid://xwfcd3mq0lmv" path="res://assets/graphics/table.png" id="1_ppeeo"]
 [ext_resource type="PackedScene" uid="uid://4mh4okynk4p3" path="res://objects/player.tscn" id="2_01s1c"]
-[ext_resource type="Texture2D" uid="uid://dsg4rx48euiwf" path="res://assets/graphics/barber.png" id="2_p3roe"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_wwsdq"]
+[ext_resource type="PackedScene" uid="uid://br70syorjb6sm" path="res://objects/barber.tscn" id="7_gih1v"]
 [ext_resource type="PackedScene" uid="uid://4xkha4eh53ip" path="res://objects/grenade.tscn" id="7_xhjai"]
 [ext_resource type="PackedScene" uid="uid://dbf06y2solaox" path="res://ui/countdown.tscn" id="8_vj7oq"]
 
@@ -73,28 +73,6 @@ sources/0 = SubResource("TileSetAtlasSource_ee3qo")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4omx3"]
 size = Vector2(1280, 39)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mjs3i"]
-atlas = ExtResource("2_p3roe")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0j5dv"]
-atlas = ExtResource("2_p3roe")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_uojea"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mjs3i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0j5dv")
-}],
-"loop": true,
-"name": &"default",
-"speed": 2.0
-}]
-
 [node name="Game" type="Node2D" node_paths=PackedStringArray("player_spawn", "countdown_position")]
 script = ExtResource("1_8bcsx")
 player_inst = ExtResource("2_01s1c")
@@ -126,12 +104,7 @@ collision_mask = 0
 position = Vector2(640, 733.5)
 shape = SubResource("RectangleShape2D_4omx3")
 
-[node name="Barber" type="AnimatedSprite2D" parent="."]
-position = Vector2(640, 257)
-scale = Vector2(8, 8)
-sprite_frames = SubResource("SpriteFrames_uojea")
-autoplay = "default"
-offset = Vector2(2.08165e-12, -15)
+[node name="Barber" parent="." instance=ExtResource("7_gih1v")]
 
 [node name="CountdownPosition" type="Marker2D" parent="."]
 position = Vector2(640, 340)
