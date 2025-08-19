@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqbt13ui22e8c"]
+
+[ext_resource type="Script" path="res://objects/boss_attacks/scripts/burst.gd" id="1_p51ch"]
+
+[node name="Burst" type="Node"]
+script = ExtResource("1_p51ch")

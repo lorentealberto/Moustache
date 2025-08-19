@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://br70syorjb6sm"]
+[gd_scene load_steps=9 format=3 uid="uid://br70syorjb6sm"]
 
 [ext_resource type="Texture2D" uid="uid://dsg4rx48euiwf" path="res://assets/graphics/barber.png" id="1_fr7ka"]
-[ext_resource type="Script" path="res://scripts/barber.gd" id="2_jagd6"]
-[ext_resource type="PackedScene" uid="uid://bsjci7vyqcltf" path="res://objects/boss_attacks/throw_grenades.tscn" id="3_0fhpi"]
+[ext_resource type="Script" path="res://objects/boss_attacks/scripts/attacks.gd" id="3_8uo6p"]
+[ext_resource type="Script" path="res://objects/boss_attacks/scripts/throw_grenades.gd" id="3_q7urt"]
+[ext_resource type="PackedScene" uid="uid://4xkha4eh53ip" path="res://objects/grenade.tscn" id="4_01kgy"]
+[ext_resource type="Script" path="res://objects/boss_attacks/scripts/burst.gd" id="5_ksoqw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mjs3i"]
 atlas = ExtResource("1_fr7ka")
@@ -32,13 +34,14 @@ scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_uojea")
 autoplay = "default"
 offset = Vector2(2.08165e-12, -15)
-script = ExtResource("2_jagd6")
 
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
+[node name="Attacks" type="Node" parent="." node_paths=PackedStringArray("initial_attack")]
+script = ExtResource("3_8uo6p")
+initial_attack = NodePath("ThrowGrenades")
 
-[node name="Attacks" type="Node" parent="."]
+[node name="ThrowGrenades" type="Node" parent="Attacks"]
+script = ExtResource("3_q7urt")
+grenade = ExtResource("4_01kgy")
 
-[node name="ThrowGrenades" parent="Attacks" instance=ExtResource("3_0fhpi")]
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="Burst" type="Node" parent="Attacks"]
+script = ExtResource("5_ksoqw")
