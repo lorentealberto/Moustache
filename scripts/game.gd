@@ -16,7 +16,7 @@ var game_started: bool = false
 
 func _ready() -> void:
 	Signals.zoom_half.connect(spawn_player)
-	Signals.zoom_finished.connect(spawn_countdown)
+	Signals.third_eye_enabled.connect(spawn_countdown)
 	
 	System.limit = limit.global_position
 

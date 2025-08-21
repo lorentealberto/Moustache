@@ -59,7 +59,7 @@ func _process(delta: float) -> void:
 		if not was_on_floor and is_on_floor():
 			anim.stop(true)
 			anim.play("grounded")
-			System.main_camera.apply_shake(0.25)
+			#System.main_camera.apply_shake(0.25, true)
 		
 		was_on_floor = is_on_floor()
 

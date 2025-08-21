@@ -12,7 +12,7 @@ func _ready() -> void:
 	randomize()
 	global_position.x = randf_range(System.h_limit, System.screen_size.x - System.h_limit)
 	
-	var tween: Tween = get_tree().create_tween()
+	var tween: Tween = create_tween()
 	tween.tween_property(self, "global_position", target_pos, randf_range(0.5, 2.0))
 	tween.tween_callback(explode)#.set_delay(randf_range(0.5, 1.0))
 	
@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 
 func explode() -> void:
 	enabled = false
-	System.main_camera.apply_shake(1)
+	System.main_camera.apply_shake(0.5, true)
 	
 	var part: GPUParticles2D = explosion_particles_scene.instantiate()
 	part.global_position = global_position

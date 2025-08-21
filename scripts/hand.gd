@@ -16,7 +16,7 @@ var offset_pos: float = 0.0
 
 
 func _ready() -> void:
-	Signals.zoom_finished.connect(approach)
+	Signals.barber_appeared.connect(approach)
 	mode = randi() % 2
 
 
@@ -42,7 +42,10 @@ func _process(delta: float) -> void:
 
 
 func approach() -> void:
-	var tween: Tween = get_tree().create_tween()
+	var tween: Tween = create_tween()
 	
-	tween.tween_property(self, "global_position", target_pos.global_position, 2).set_delay(1)
+	tween.tween_property(self, "global_position", target_pos.global_position, 2)\
+	.set_delay(1)\
+	.set_ease(Tween.EASE_IN_OUT)\
+	.set_trans(Tween.TRANS_CUBIC)
 	tween.tween_callback(func() -> void: enabled = true)

@@ -90,6 +90,9 @@ limit_bottom = 720
 script = ExtResource("2_wwsdq")
 noise = SubResource("FastNoiseLite_8rrwf")
 
+[node name="Barber" parent="." instance=ExtResource("7_gih1v")]
+position = Vector2(642, 256)
+
 [node name="PlayerSpawn" type="Marker2D" parent="."]
 position = Vector2(640, 667)
 
@@ -103,9 +106,6 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/Bottom"]
 position = Vector2(640, 733.5)
 shape = SubResource("RectangleShape2D_4omx3")
-
-[node name="Barber" parent="." instance=ExtResource("7_gih1v")]
-position = Vector2(642, 256)
 
 [node name="CountdownPosition" type="Marker2D" parent="."]
 position = Vector2(640, 340)
