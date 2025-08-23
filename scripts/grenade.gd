@@ -10,7 +10,7 @@ var direction: int = 0
 
 func _ready() -> void:
 	randomize()
-	global_position.x = randf_range(System.h_limit, System.screen_size.x - System.h_limit)
+	#global_position.x = randf_range(System.h_limit, System.screen_size.x - System.h_limit)
 	
 	var tween: Tween = create_tween()
 	tween.tween_property(self, "global_position", target_pos, randf_range(0.5, 2.0))

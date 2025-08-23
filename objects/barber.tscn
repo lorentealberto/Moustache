@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://br70syorjb6sm"]
+[gd_scene load_steps=12 format=3 uid="uid://br70syorjb6sm"]
 
 [ext_resource type="Texture2D" uid="uid://dsg4rx48euiwf" path="res://assets/graphics/barber.png" id="1_fr7ka"]
 [ext_resource type="Script" path="res://scripts/barber.gd" id="2_x5t3e"]
 [ext_resource type="Script" path="res://objects/boss_attacks/scripts/attacks.gd" id="3_8uo6p"]
 [ext_resource type="Script" path="res://objects/boss_attacks/scripts/throw_grenades.gd" id="3_q7urt"]
 [ext_resource type="PackedScene" uid="uid://4xkha4eh53ip" path="res://objects/grenade.tscn" id="4_01kgy"]
-[ext_resource type="Script" path="res://objects/boss_attacks/scripts/burst.gd" id="5_ksoqw"]
 [ext_resource type="PackedScene" uid="uid://c2vpcqxlbwpob" path="res://objects/eye.tscn" id="6_by5vf"]
 [ext_resource type="Script" path="res://scripts/head_eye.gd" id="8_ap2wj"]
 [ext_resource type="PackedScene" uid="uid://b87fe4eo54si6" path="res://objects/hand.tscn" id="8_nd32p"]
@@ -94,20 +93,20 @@ initial_attack = NodePath("ThrowGrenades")
 script = ExtResource("3_q7urt")
 grenade = ExtResource("4_01kgy")
 
-[node name="Burst" type="Node" parent="Attacks"]
-script = ExtResource("5_ksoqw")
-
 [node name="HeadEye" parent="." instance=ExtResource("6_by5vf")]
+unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 position = Vector2(0.25, -22.5)
 scale = Vector2(0.2, 0.2)
 script = ExtResource("8_ap2wj")
 
 [node name="LeftHand" parent="." node_paths=PackedStringArray("target_pos") instance=ExtResource("8_nd32p")]
+unique_name_in_owner = true
 position = Vector2(100, -64)
 target_pos = NodePath("../LeftHandPos")
 
 [node name="RightHand" parent="." node_paths=PackedStringArray("target_pos") instance=ExtResource("8_nd32p")]
+unique_name_in_owner = true
 position = Vector2(-100, -64)
 target_pos = NodePath("../RightHandPos")
 

@@ -1,6 +1,7 @@
 extends Sprite2D
 
 @export var target_pos: Marker2D
+@onready var eye: Sprite2D = $Eye
 
 
 const SPEED: float = 1
@@ -13,6 +14,7 @@ var enabled: bool = false
 var mode: int = 0
 var delay: float = randf_range(3, 10)
 var offset_pos: float = 0.0
+var curr_pos: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
@@ -22,6 +24,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if enabled:
+		curr_pos = eye.global_position
 		if delay <= 0:
 			if abs(offset_pos) > 0.01:
 				offset_pos = lerpf(offset_pos, 0.0, 0.1)

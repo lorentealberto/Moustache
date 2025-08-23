@@ -6,6 +6,13 @@ extends Node
 var current_attack: Attack
 var attacks: Dictionary
 
+
+@onready var origin_points: Array[Sprite2D] = [
+	%HeadEye,
+	%LeftHand,
+	%RightHand
+]
+
 func _ready() -> void:
 	Signals.game_started.connect(start_machine)
 
