@@ -88,7 +88,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(5.75, 6.5)]
+"values": [Vector2(3.833, 4.333)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -146,7 +146,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector2(6.75, 5.25), Vector2(6, 6)]
+"values": [Vector2(4.5, 3.5), Vector2(4, 4)]
 }
 
 [sub_resource type="Animation" id="Animation_ebpgn"]
@@ -163,7 +163,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector2(4, 7), Vector2(6, 6)]
+"values": [Vector2(2.667, 4.667), Vector2(4, 4)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gp2n1"]
@@ -181,7 +181,7 @@ script = ExtResource("1_n4l2w")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
-scale = Vector2(5.75, 6.5)
+scale = Vector2(3.833, 4.333)
 sprite_frames = SubResource("SpriteFrames_k03ae")
 autoplay = "default"
 offset = Vector2(2.08165e-12, -7)

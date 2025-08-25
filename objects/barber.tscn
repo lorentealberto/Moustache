@@ -98,7 +98,6 @@ grenade = ExtResource("4_01kgy")
 script = ExtResource("6_mq4vq")
 
 [node name="Delay" type="Timer" parent="Attacks"]
-wait_time = 2.0
 one_shot = true
 
 [node name="HeadEye" parent="." instance=ExtResource("6_by5vf")]

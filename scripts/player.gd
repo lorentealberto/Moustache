@@ -4,8 +4,8 @@ extends CharacterBody2D
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
 const GRAVITY: float = 98
-const JFORCE: float = 1500
-const HSPEED: float = 750
+const JFORCE: float = 1250
+const HSPEED: float = 500
 const ACCEL: float = 20.0
 const DECCEL: float = 10.0
 const SPRING: float = 180

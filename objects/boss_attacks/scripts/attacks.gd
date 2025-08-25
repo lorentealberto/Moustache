@@ -40,7 +40,7 @@ func get_random_point() -> Vector2:
 
 
 func _on_attack_finished() -> void:
-	delay.start()
+	delay.start(randf_range(0.75, 2))
 	if current_attack:
 		current_attack.exit()
 		current_attack = null
