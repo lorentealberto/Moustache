@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c2vpcqxlbwpob" path="res://objects/eye.tscn" id="3_lnqhc"]
 
 [node name="Hand" type="Sprite2D"]
+z_index = 1
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_lkspt")
 offset = Vector2(0, -16)

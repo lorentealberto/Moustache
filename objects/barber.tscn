@@ -1,12 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://br70syorjb6sm"]
+[gd_scene load_steps=14 format=3 uid="uid://br70syorjb6sm"]
 
 [ext_resource type="Texture2D" uid="uid://dsg4rx48euiwf" path="res://assets/graphics/barber.png" id="1_fr7ka"]
 [ext_resource type="Script" path="res://scripts/barber.gd" id="2_x5t3e"]
 [ext_resource type="Script" path="res://objects/boss_attacks/scripts/attacks.gd" id="3_8uo6p"]
 [ext_resource type="Script" path="res://objects/boss_attacks/scripts/throw_grenades.gd" id="3_q7urt"]
-[ext_resource type="PackedScene" uid="uid://4xkha4eh53ip" path="res://objects/grenade.tscn" id="4_01kgy"]
 [ext_resource type="PackedScene" uid="uid://c2vpcqxlbwpob" path="res://objects/eye.tscn" id="6_by5vf"]
 [ext_resource type="Script" path="res://objects/boss_attacks/scripts/burst.gd" id="6_mq4vq"]
+[ext_resource type="Script" path="res://objects/boss_attacks/scripts/oscillating_burst.gd" id="7_0myb7"]
+[ext_resource type="Script" path="res://objects/boss_attacks/scripts/throw_fireworks.gd" id="7_txrn3"]
 [ext_resource type="Script" path="res://scripts/head_eye.gd" id="8_ap2wj"]
 [ext_resource type="PackedScene" uid="uid://b87fe4eo54si6" path="res://objects/hand.tscn" id="8_nd32p"]
 
@@ -73,6 +74,7 @@ _data = {
 }
 
 [node name="Barber" type="Sprite2D"]
+position = Vector2(4, 4)
 scale = Vector2(8, 8)
 texture = ExtResource("1_fr7ka")
 offset = Vector2(0, 16)
@@ -86,16 +88,20 @@ libraries = {
 autoplay = "breathe"
 speed_scale = 0.5
 
-[node name="Attacks" type="Node" parent="." node_paths=PackedStringArray("initial_attack")]
+[node name="Attacks" type="Node" parent="."]
 script = ExtResource("3_8uo6p")
-initial_attack = NodePath("Burst")
 
 [node name="ThrowGrenades" type="Node" parent="Attacks"]
 script = ExtResource("3_q7urt")
-grenade = ExtResource("4_01kgy")
 
 [node name="Burst" type="Node" parent="Attacks"]
 script = ExtResource("6_mq4vq")
+
+[node name="OscillatingBurst" type="Node" parent="Attacks"]
+script = ExtResource("7_0myb7")
+
+[node name="ThrowFireworks" type="Node" parent="Attacks"]
+script = ExtResource("7_txrn3")
 
 [node name="Delay" type="Timer" parent="Attacks"]
 one_shot = true
@@ -109,12 +115,13 @@ script = ExtResource("8_ap2wj")
 
 [node name="LeftHand" parent="." node_paths=PackedStringArray("target_pos") instance=ExtResource("8_nd32p")]
 unique_name_in_owner = true
-position = Vector2(100, -64)
+position = Vector2(100.375, -63.375)
 target_pos = NodePath("../LeftHandPos")
 
 [node name="RightHand" parent="." node_paths=PackedStringArray("target_pos") instance=ExtResource("8_nd32p")]
 unique_name_in_owner = true
 position = Vector2(-100, -64)
+flip_h = false
 target_pos = NodePath("../RightHandPos")
 
 [node name="RightHandPos" type="Marker2D" parent="."]

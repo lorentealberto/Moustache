@@ -28,6 +28,10 @@ func start_machine() -> void:
 	if initial_attack:
 		initial_attack.enter()
 		current_attack = initial_attack
+	else:
+		var rnd_key: String = attacks.keys().pick_random()
+		attacks[rnd_key].enter()
+		current_attack = attacks[rnd_key]
 	
 
 func _process(delta: float) -> void:
@@ -40,7 +44,7 @@ func get_random_point() -> Vector2:
 
 
 func _on_attack_finished() -> void:
-	delay.start(randf_range(0.75, 2))
+	delay.start(randf_range(0.5, 1))
 	if current_attack:
 		current_attack.exit()
 		current_attack = null

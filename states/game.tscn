@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_8bcsx"]
 [ext_resource type="PackedScene" uid="uid://4mh4okynk4p3" path="res://objects/player.tscn" id="2_01s1c"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_wwsdq"]
+[ext_resource type="PackedScene" uid="uid://cjbn5i6ljr7sa" path="res://objects/firework.tscn" id="4_owabn"]
 [ext_resource type="PackedScene" uid="uid://du7y0oi7tgvmw" path="res://objects/background.tscn" id="5_fmobv"]
 [ext_resource type="PackedScene" uid="uid://br70syorjb6sm" path="res://objects/barber.tscn" id="7_gih1v"]
-[ext_resource type="PackedScene" uid="uid://4xkha4eh53ip" path="res://objects/grenade.tscn" id="7_xhjai"]
 [ext_resource type="PackedScene" uid="uid://bewnbirv37kor" path="res://objects/table.tscn" id="8_n2kit"]
 [ext_resource type="PackedScene" uid="uid://dbf06y2solaox" path="res://ui/countdown.tscn" id="8_vj7oq"]
 
@@ -17,7 +17,7 @@ player_inst = ExtResource("2_01s1c")
 countdown_inst = ExtResource("8_vj7oq")
 player_spawn = NodePath("PlayerSpawn")
 countdown_position = NodePath("CountdownPosition")
-grenade_scene = ExtResource("7_xhjai")
+grenade_scene = ExtResource("4_owabn")
 
 [node name="Background" parent="." instance=ExtResource("5_fmobv")]
 
@@ -30,11 +30,11 @@ limit_bottom = 720
 script = ExtResource("2_wwsdq")
 noise = SubResource("FastNoiseLite_8rrwf")
 
-[node name="Barber" parent="." instance=ExtResource("7_gih1v")]
-position = Vector2(642, 256)
-
 [node name="PlayerSpawn" type="Marker2D" parent="."]
 position = Vector2(640, 667)
+
+[node name="Barber" parent="." instance=ExtResource("7_gih1v")]
+position = Vector2(644, 256)
 
 [node name="Table" parent="." instance=ExtResource("8_n2kit")]
 

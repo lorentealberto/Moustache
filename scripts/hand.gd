@@ -12,13 +12,15 @@ var time: float = 0
 var enabled: bool = false
 
 var mode: int = 0
-var delay: float = randf_range(3, 10)
+var delay: float = randf_range(30, 60)
 var offset_pos: float = 0.0
 var curr_pos: Vector2 = Vector2.ZERO
 
+var _go_random: bool = true
+
 
 func _ready() -> void:
-	mode = randi() % 2
+	mode = 3#randi() % 3
 	
 	if not System.disable_init_animation:
 		Signals.barber_appeared.connect(approach)
@@ -36,8 +38,9 @@ func _process(delta: float) -> void:
 				offset_pos = lerpf(offset_pos, 0.0, 0.1)
 			else:
 				delay = randf_range(3, 10)
-				mode = randi() % 2
+				mode = 3#randi() % 2
 				time = 0
+				_go_random = true
 		else:
 			time += delta * SPEED
 			delay -= delta
@@ -47,7 +50,14 @@ func _process(delta: float) -> void:
 				global_position.y = target_pos.global_position.y + offset_pos
 			1:
 				global_position.x = target_pos.global_position.x + offset_pos
-				
+			3:
+				if _go_random:
+					var tween: Tween = create_tween()
+					var n_position: Vector2 = Vector2(randf_range(System.h_limit, System.screen_size.x - System.h_limit), randf_range(System.limit.y, System.screen_size.y))
+					tween.tween_property(self, "global_position", n_position, 2)\
+					.set_ease(Tween.EASE_IN_OUT)\
+					.set_trans(Tween.TRANS_CUBIC)
+					tween.tween_callback(func() -> void: _go_random = false)
 
 
 func approach() -> void:

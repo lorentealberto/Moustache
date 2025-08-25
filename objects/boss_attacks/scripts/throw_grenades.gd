@@ -1,6 +1,6 @@
 class_name ThrowGrenades extends Attack
 
-@export var grenade: PackedScene
+@onready var grenade: PackedScene = preload("res://objects/grenade.tscn")
 
 var blocked: bool = false
 
