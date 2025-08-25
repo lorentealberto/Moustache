@@ -19,9 +19,11 @@ var autostop: bool = true
 func _ready() -> void:
 	Signals.player_spawned.connect(zoom_out)
 	
-	var tween: Tween = create_tween()
-	tween.tween_property(self, "zoom", Vector2(2.5, 2.5), 1.5).set_delay(1).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)	
-	tween.tween_callback(zoom_half)
+	if not System.disable_init_animation:
+		var tween: Tween = create_tween()
+		tween.tween_property(self, "zoom", Vector2(2.5, 2.5), 1.5).set_delay(1).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)	
+		tween.tween_callback(zoom_half)
+	
 	System.main_camera = self
 
 

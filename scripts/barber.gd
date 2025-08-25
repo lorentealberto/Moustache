@@ -1,7 +1,10 @@
 extends Sprite2D
 
 func _ready() -> void:
-	Signals.zoom_finished.connect(appear)
+	if not System.disable_init_animation:
+		Signals.zoom_finished.connect(appear)
+	else:
+		offset.y = -15
 
 
 func appear() -> void:

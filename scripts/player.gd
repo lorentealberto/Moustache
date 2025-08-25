@@ -17,15 +17,18 @@ var is_active: bool = false
 var direction: int = 0
 var displacement: float = 0
 var oscillator_velocity: float = 0
-
+var appear_anim_finished: bool = false
 
 func _ready() -> void:
 	System.player = self
-	Signals.zoom_finished.connect(_enable_player)
+	if not System.disable_init_animation:
+		Signals.zoom_finished.connect(_enable_player)
+	else:
+		_enable_player()
 
 
 func _process(delta: float) -> void:
-	if is_active:
+	if is_active and appear_anim_finished:
 		velocity.y += GRAVITY
 		
 		#Horizontal Movement
@@ -74,3 +77,7 @@ func _enable_player() -> void:
 
 func _on_appear_particles_finished() -> void:
 	Signals.player_spawned.emit()
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if not appear_anim_finished: appear_anim_finished = anim_name == "appear"

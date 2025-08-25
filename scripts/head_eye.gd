@@ -4,7 +4,10 @@ extends Sprite2D
 var curr_pos: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
-	Signals.barber_appeared.connect(appear)
+	if not System.disable_init_animation:
+		Signals.barber_appeared.connect(appear)
+	else:
+		modulate.a = 1
 
 func _process(delta: float) -> void:
 	curr_pos = global_position

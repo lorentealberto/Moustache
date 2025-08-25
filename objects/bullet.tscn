@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://batjl3t55xgti"]
 
-[ext_resource type="Texture2D" uid="uid://cow2t8emk7eaj" path="res://assets/graphics/white_circle.png" id="1_2jy8f"]
+[ext_resource type="Texture2D" uid="uid://becruu3785h4f" path="res://assets/graphics/bullet.png" id="1_vqmts"]
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="2_jiy1h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mq1m3"]
@@ -45,10 +45,10 @@ _data = {
 
 [node name="Bullet" type="Sprite2D"]
 modulate = Color(1, 1, 1, 0)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_2jy8f")
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_vqmts")
 script = ExtResource("2_jiy1h")
-horizontal_speed = 400.0
+horizontal_speed = 250.0
 
 [node name="Area2D" type="Area2D" parent="."]
 

@@ -3,7 +3,7 @@ class_name Attack extends Node
 signal finished
 
 #Ref. Máquina de estados
-@onready var attacks: Node = get_parent()
+@onready var sm: Node = get_parent()
 
 
 func enter() -> void:

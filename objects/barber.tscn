@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://br70syorjb6sm"]
+[gd_scene load_steps=13 format=3 uid="uid://br70syorjb6sm"]
 
 [ext_resource type="Texture2D" uid="uid://dsg4rx48euiwf" path="res://assets/graphics/barber.png" id="1_fr7ka"]
 [ext_resource type="Script" path="res://scripts/barber.gd" id="2_x5t3e"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://objects/boss_attacks/scripts/throw_grenades.gd" id="3_q7urt"]
 [ext_resource type="PackedScene" uid="uid://4xkha4eh53ip" path="res://objects/grenade.tscn" id="4_01kgy"]
 [ext_resource type="PackedScene" uid="uid://c2vpcqxlbwpob" path="res://objects/eye.tscn" id="6_by5vf"]
+[ext_resource type="Script" path="res://objects/boss_attacks/scripts/burst.gd" id="6_mq4vq"]
 [ext_resource type="Script" path="res://scripts/head_eye.gd" id="8_ap2wj"]
 [ext_resource type="PackedScene" uid="uid://b87fe4eo54si6" path="res://objects/hand.tscn" id="8_nd32p"]
 
@@ -87,11 +88,18 @@ speed_scale = 0.5
 
 [node name="Attacks" type="Node" parent="." node_paths=PackedStringArray("initial_attack")]
 script = ExtResource("3_8uo6p")
-initial_attack = NodePath("ThrowGrenades")
+initial_attack = NodePath("Burst")
 
 [node name="ThrowGrenades" type="Node" parent="Attacks"]
 script = ExtResource("3_q7urt")
 grenade = ExtResource("4_01kgy")
+
+[node name="Burst" type="Node" parent="Attacks"]
+script = ExtResource("6_mq4vq")
+
+[node name="Delay" type="Timer" parent="Attacks"]
+wait_time = 2.0
+one_shot = true
 
 [node name="HeadEye" parent="." instance=ExtResource("6_by5vf")]
 unique_name_in_owner = true
@@ -115,3 +123,5 @@ position = Vector2(-16, -4)
 
 [node name="LeftHandPos" type="Marker2D" parent="."]
 position = Vector2(16, -4)
+
+[connection signal="timeout" from="Attacks/Delay" to="Attacks" method="_on_delay_timeout"]

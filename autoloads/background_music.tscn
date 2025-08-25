@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bntdematdopat"]
+
+[ext_resource type="AudioStream" uid="uid://p2io7bckfn4s" path="res://assets/music/MMP_EP5_140bpm_8bar_Drum_Loop_13.wav" id="1_0fjda"]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer"]
+stream = ExtResource("1_0fjda")
+autoplay = true
+bus = &"Music"

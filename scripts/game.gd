@@ -15,12 +15,16 @@ var game_started: bool = false
 
 
 func _ready() -> void:
-	Signals.zoom_half.connect(spawn_player)
-	Signals.third_eye_enabled.connect(spawn_countdown)
+	if not System.disable_init_animation:
+		Signals.zoom_half.connect(spawn_player)
+		Signals.third_eye_enabled.connect(spawn_countdown)
+	else:
+		spawn_player()
 	
 	System.limit = limit.global_position
-
-
+	
+	
+#TODO: Esto es para debuggear las granadas
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("spawn_grenade"):
 		add_child(grenade_scene.instantiate())

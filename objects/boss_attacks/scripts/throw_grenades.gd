@@ -11,7 +11,7 @@ var i: int
 var orig: Vector2
 
 func enter() -> void:
-	orig = attacks.origin_points[randi() % len(attacks.origin_points)].curr_pos
+	orig = sm.get_random_point()
 	ammount = randi_range(1, 3)
 	i = 0
 

@@ -18,8 +18,14 @@ var curr_pos: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
-	Signals.barber_appeared.connect(approach)
 	mode = randi() % 2
+	
+	if not System.disable_init_animation:
+		Signals.barber_appeared.connect(approach)
+	else:
+		curr_pos = eye.global_position
+		global_position = target_pos.global_position
+		enabled = true
 
 
 func _process(delta: float) -> void:
